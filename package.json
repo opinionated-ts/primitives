@@ -1,0 +1,35 @@
+{
+  "name": "@opinionated-ts/template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opinionated-ts/template.git"
+  },
+  "type": "module",
+  "scripts": {
+    "cspell": "cspell lint .",
+    "fmt": "oxfmt --check .",
+    "fmt:fix": "oxfmt .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "check": "bun fmt && bun lint && bun cspell",
+    "fix": "bun fmt:fix && bun lint:fix",
+    "hooks:install": "lefthook install",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@opinionated-ts/config": "^1.8.10",
+    "@types/bun": "^1.4.0",
+    "@types/node": "^26.2.0",
+    "@vitest/coverage-istanbul": "5.0.1",
+    "vitest": "^5.0.1"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "bun": "^1.4.0"
+  },
+  "packageManager": "bun@1.4.0"
+}
