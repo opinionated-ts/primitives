@@ -1,5 +1,16 @@
 import type { IsObject, Simplify, SimplifyDeep } from "@/object.types";
 
+/**
+ * Recursively merges a tuple of sources from left to right.
+ *
+ * `undefined` and non-object sources are ignored. The accumulated result is
+ * passed to the next source until all sources have been processed.
+ *
+ * @typeParam Sources - Remaining sources to merge.
+ * @typeParam Result - Accumulated merged result.
+ *
+ * @internal
+ */
 type MergeSourcesImpl<
   Sources extends readonly unknown[],
   Result extends object = {},
@@ -35,6 +46,17 @@ export type MergeSources<Sources extends readonly unknown[]> = SimplifyDeep<
  */
 export type Merge<Base, Override> = SimplifyDeep<MergeImpl<Base, Override>>;
 
+/**
+ * Recursively resolves the merge of two types.
+ *
+ * Plain objects are merged recursively. Arrays, non-object values, and other
+ * non-mergeable values are treated as leaves, with `Override` replacing `Base`.
+ *
+ * @typeParam Base - Base type being merged.
+ * @typeParam Override - Type whose properties take precedence.
+ *
+ * @internal
+ */
 type MergeImpl<Base, Override> = Base extends object
   ? Override extends object
     ? IsObject<Base> extends true
@@ -54,6 +76,8 @@ type MergeImpl<Base, Override> = Base extends object
  *
  * @typeParam Base - Base object type.
  * @typeParam Override - Object type whose properties take precedence.
+ *
+ * @internal
  */
 type MergeObjects<Base extends object, Override extends object> = Simplify<
   Omit<Base, keyof Override> & {
