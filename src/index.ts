@@ -1,1 +1,1 @@
-export const hello = "hello";
+export type { Exact, IsObject, Simplify, SimplifyDeep } from "./object.types";
