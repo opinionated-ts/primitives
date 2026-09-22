@@ -104,4 +104,4 @@ export function merge<const Sources extends readonly (Record<string, unknown> | 
   return result as MergeSources<Sources>;
 }
 
-export type { Merge } from "./types";
+export type { Merge, MergeSources } from "./types";
